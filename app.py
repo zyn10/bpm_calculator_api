@@ -7,9 +7,7 @@ app = Flask(__name__)
 def calculate_bpm():
     if 'audio' not in request.files:
         return jsonify({'error': 'No audio file provided'})
-
     audio_file = request.files['audio']
-
     try:
         y, sr = librosa.load(audio_file)
         onset_env = librosa.onset.onset_strength(y=y, sr=sr)
